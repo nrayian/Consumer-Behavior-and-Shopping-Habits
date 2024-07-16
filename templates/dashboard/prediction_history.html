@@ -1,0 +1,128 @@
+{% extends 'partials/sidebar.html' %}
+
+{% block styles %}
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css" rel="stylesheet" />
+<style>
+  body {
+    background-color: #add8e6; /* Light blue color */
+  }
+  #page_wrapper {
+    background-color: #add8e6; /* Light blue color */
+    min-height: 100vh;
+  }
+  .history-wrapper {
+    padding: 20px;
+  }
+  .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
+    overflow-x: auto;
+  }
+</style>
+{% endblock styles %}
+
+{% block title %}Prediction History{% endblock title %}
+
+{% block content %}
+<main>
+  <div class="history-wrapper">
+    <h1>Prediction History</h1>
+    <table id="example" class="display nowrap" style="width: 100%">
+      <thead>
+        <tr>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Ethnic</th>
+          <th>Occupation</th>
+          <th>Annual <br>income <br>range</th>
+          <th>Do you use <br>social media?</th>
+          <th>Do you <br>have experience <br> purchasing because of<br> the influence of<br> social media?</th>
+          <th>Do reviews<br> and ratings on <br>social media affect <br>your purchasing<br> decision?</th>
+          <th>On average, <br>how many hours <br>do you spend <br>on the internet<br> per week?</th>
+          <th>Do you <br>pay attention<br> to the <br>advertisement<br> on social media?</th>
+          <th>PB1</th>
+          <th>PB2</th>
+          <th>PB3</th>
+          <th>PB4</th>
+          <th>ATTD 1</th>
+          <th>ATTD 2</th>
+          <th>ATTD 3</th>
+          <th>ATTD 4</th>
+          <th>SN1</th>
+          <th>SN2</th>
+          <th>SN3</th>
+          <th>SN4</th>
+          <th>PBC1</th>
+          <th>PBC2</th>
+          <th>PBC3</th>
+          <th>PBC4</th>
+          <!-- <th>Prediction</th> -->
+          <!-- <th>User Prediction</th> -->
+          <!-- <th>Is Correct</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in data %}
+        <tr>
+          <td>{{item.gender}}</td>
+          <td>{{item.age}}</td>
+          <td>{{item.ethnic}}</td>
+          <td>{{item.occupation}}</td>
+          <td>{{item.income}}</td>
+          <td>{{item.use_social_media}}</td>
+          <td>{{item.experience_purchasing}}</td>
+          <td>{{item.reviews_affect}}</td>
+          <td>{{item.internet_hours}}</td>
+          <td>{{item.attention_ads}}</td>
+          <td>{{item.PB1}}</td>
+          <td>{{item.PB2}}</td>
+          <td>{{item.PB3}}</td>
+          <td>{{item.PB4}}</td>
+          <td>{{item.ATTD1}}</td>
+          <td>{{item.ATTD2}}</td>
+          <td>{{item.ATTD3}}</td>
+          <td>{{item.ATTD4}}</td>
+          <td>{{item.SN1}}</td>
+          <td>{{item.SN2}}</td>
+          <td>{{item.SN3}}</td>
+          <td>{{item.SN4}}</td>
+          <td>{{item.PBC1}}</td>
+          <td>{{item.PBC2}}</td>
+          <td>{{item.PBC3}}</td>
+          <td>{{item.PBC4}}</td>
+          <!-- <td>{{item.prediction}}</td> -->
+          <!-- <td>{{item.user_prediction}}</td> -->
+          <!-- {% if item.is_correct_prediction %}
+          <td>YES</td>
+          {% else %}
+          <td>NO</td>
+          {% endif %} -->
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+{% endblock content %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/dist/boxicons.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("#example").DataTable({
+      dom: "Bfrtip",
+      buttons: ["csv", "excel"],
+    });
+  });
+</script>
+{% endblock scripts %}

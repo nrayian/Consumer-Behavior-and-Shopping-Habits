@@ -1,0 +1,39 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}Consumer Behavior and Shopping Habits{% endblock title %}
+
+{% block content %}
+<header class="header">
+  <div class="container flex">
+    <div class="text">
+      <h1 class="mb">
+        <span>Consumer Behavior and Shopping Habits:</span><br />
+        A Deep Dive into Customer Choices
+      </h1>
+      <p class="mb sub-heading">
+        The project involves developing a Web Application using the Django framework.
+        The application allows users to input various demographic and behavioral data,
+        which is then processed by a machine learning model to predict the likelihood of High or Low purchasing
+        behavior.<br /><br />
+        The models we trained are <strong>Naive Bayes</strong>,
+        <strong> Support Vector Classifier(SVM)</strong>, <strong> Random Forest Classifier</strong>,
+        <strong> Logistic Regression</strong>, <strong> K-nearest neighbours(KNN)</strong>,
+        <strong> Decision Tree Regression</strong>,<strong> Gradient Boosting</strong>, and <strong> Ada Boost.</strong>
+      </p>
+
+      <a href="{% url 'make-prediction' %}" class="btn mt">Try Now</a>
+    </div>
+
+    <div class="visual">
+      <img src="/static/img/CBMA.png" alt="" />
+    </div>
+  </div>
+</header>
+
+
+<footer class="footer">
+  <div class="container flex">
+    <p class="tertiary">&copy; 2024, <strong>Code Crushers</strong>. All Rights Reserved. </p>
+  </div>
+</footer>
+{% endblock content %}

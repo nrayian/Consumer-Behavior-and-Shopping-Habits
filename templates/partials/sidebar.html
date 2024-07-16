@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/static/css/dashboard.css" />
+
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+        
+        {% block styles %}{% endblock styles %}
+        <title>{% block title %}{% endblock title %}</title>
+    </head>
+    <body>
+        <div id="page_wrapper">
+            <div id="sidenav" class="sidenav">
+                <div class="sidenav_header">
+                    <div class="logo_section">
+                        <a href="{% url 'index' %}" title="Home"><i class='bx bxs-home'></i> </a>
+                    </div>
+                    <a href="{% url 'make-prediction' %} " class="sidenav_link active" title="Make Prediction">
+                        <i class="bx bx-folder"></i>
+                        <h3>Make Prediction</h3>
+                    </a>
+                    <a href="{% url 'prediction-history' %}" class="sidenav_link" title="Prediction History">
+                        <i class="bx bx-file"></i>
+                        <h3>History</h3>
+                    </a>
+                </div>
+                <div class="sidenav_footer">
+                    <a href="/admin/" class="sidenav_link" target="blank_" title="Admin Portal">
+                        <i class="bx bx-rocket"></i>
+                        <h3>Admin Portal</h3>
+                    </a>
+                </div>
+                <button id="nav_collapse_btn">
+                    <i class="bx bxs-chevrons-left"></i>
+                </button>
+            </div>
+        
+            {% block content %}{% endblock content %}
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/dist/boxicons.js"></script>
+        <script src="/static/js/main.js"></script>
+
+        {% block scripts %}{% endblock scripts %}
+    </body>
+</html>

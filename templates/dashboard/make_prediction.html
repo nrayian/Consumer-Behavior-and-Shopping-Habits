@@ -1,0 +1,297 @@
+{% extends 'partials/sidebar.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    #search-wrapper {
+        overflow-x: scroll;
+        height: 100%;
+    }
+</style>
+
+<div id="search-wrapper">
+    <p>
+    <h1
+        style="text-align: center; color: rgb(127, 2, 75); font-family: 'Times New Roman', Times, serif; font-size: 250%; ">
+        Consumer Behavior and Shopping Habits: A Deep Dive into Customer Choices</h1>
+    </p>
+    <form id="search-form" action="/prediction/" method="POST">
+        {% csrf_token %}
+
+        <h2>Section A: Demographic Profile</h2>
+
+        <h3>QA1: Gender</h3>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br>
+
+        <h3>QA2: Age</h3>
+        <input type="radio" id="age1" name="age" value="17 - 22 Years Old">
+        <label for="age1">17 - 22 Years Old</label><br>
+        <input type="radio" id="age2" name="age" value="23 - 28 Years Old">
+        <label for="age2">23 - 28 Years Old</label><br>
+        <input type="radio" id="age3" name="age" value="29 - 34 Years Old">
+        <label for="age3">29 - 34 Years Old</label><br>
+        <input type="radio" id="age4" name="age" value="35 - 40 Years Old">
+        <label for="age4">35 - 40 Years Old</label><br>
+        <input type="radio" id="age5" name="age" value="Others">
+        <label for="age5">Others</label>
+
+        <h3>QA3: Ethnic</h3>
+        <input type="radio" id="ethnic1" name="ethnic" value="Malay">
+        <label for="ethnic1">Malay</label><br>
+        <input type="radio" id="ethnic2" name="ethnic" value="Chinese">
+        <label for="ethnic2">Chinese</label><br>
+        <input type="radio" id="ethnic3" name="ethnic" value="Indian">
+        <label for="ethnic3">Indian</label><br>
+        <input type="radio" id="ethnic4" name="ethnic" value="Bangladeshi">
+        <label for="ethnic3">Bangladeshi</label><br>
+        <input type="radio" id="ethnic5" name="ethnic" value="Others">
+        <label for="ethnic4">Others</label>
+
+
+        <h3>QA4: Occupation</h3>
+        <input type="radio" id="occupation1" name="occupation" value="Student">
+        <label for="occupation1">Student</label><br>
+        <input type="radio" id="occupation2" name="occupation" value="Businessman">
+        <label for="occupation2">Businessman</label><br>
+        <input type="radio" id="occupation3" name="occupation" value="Homemaker">
+        <label for="occupation3">Homemaker</label><br>
+        <input type="radio" id="occupation4" name="occupation" value="Employee">
+        <label for="occupation4">Employee</label><br>
+        <input type="radio" id="occupation5" name="occupation" value="Retired">
+        <label for="occupation5">Retired</label><br>
+
+        <h3>QA5: Annual income range</h3>
+        <input type="radio" id="income1" name="income" value="Less than RM30,000">
+        <label for="income1">Less than RM30,000</label><br>
+        <input type="radio" id="income2" name="income" value="RM30,001-RM50,000">
+        <label for="income2">RM30,001-RM50,000</label><br>
+        <input type="radio" id="income3" name="income" value="RM50,001-RM70,000">
+        <label for="income3">RM50,001-RM70,000</label><br>
+        <input type="radio" id="income4" name="income" value="RM70,001-RM90,000">
+        <label for="income4">RM70,001-RM90,000</label><br>
+        <input type="radio" id="income5" name="income" value="More than RM90,001">
+        <label for="income5">More than RM90,001</label><br>
+
+        <h3>QA6: Do you use social media?</h3>
+        <input type="radio" id="use_social_media_yes" name="use_social_media" value="Yes">
+        <label for="use_social_media_yes">Yes</label><br>
+        <input type="radio" id="use_social_media_no" name="use_social_media" value="No">
+        <label for="use_social_media_no">No</label><br>
+
+        <h3>QA7: Do you have experience purchasing because of the influence of social media?</h3>
+        <input type="radio" id="experience_purchasing_yes" name="experience_purchasing" value="Yes">
+        <label for="experience_purchasing_yes">Yes</label><br>
+        <input type="radio" id="experience_purchasing_no" name="experience_purchasing" value="No">
+        <label for="experience_purchasing_no">No</label><br>
+
+        <h3>QA8: Do reviews and ratings on social media affect your purchasing decision?</h3>
+        <input type="radio" id="reviews_affect_yes" name="reviews_affect" value="Yes">
+        <label for="reviews_affect_yes">Yes</label><br>
+        <input type="radio" id="reviews_affect_no" name="reviews_affect" value="No">
+        <label for="reviews_affect_no">No</label><br>
+
+        <h3>QA9: On average, how many hours do you spend on the internet per week?</h3>
+        <input type="radio" id="internet_hours1" name="internet_hours" value="1 hour – 4 hours">
+        <label for="internet_hours1">1 hour – 4 hours</label><br>
+        <input type="radio" id="internet_hours2" name="internet_hours" value="5 hours – 10 hours">
+        <label for="internet_hours2">5 hours – 10 hours</label><br>
+        <input type="radio" id="internet_hours3" name="internet_hours" value="10 hours – 20 hours">
+        <label for="internet_hours3">10 hours – 20 hours</label><br>
+        <input type="radio" id="internet_hours4" name="internet_hours" value="20 hours – 40 hours">
+        <label for="internet_hours4">20 hours – 40 hours</label><br>
+        <input type="radio" id="internet_hours5" name="internet_hours" value="More than 40 hours">
+        <label for="internet_hours5">More than 40 hours</label><br>
+
+        <h3>QA10: Do you pay attention to the advertisement on social media?</h3>
+        <input type="radio" id="attention_ads_yes" name="attention_ads" value="Yes">
+        <label for="attention_ads_yes">Yes</label><br>
+        <input type="radio" id="attention_ads_no" name="attention_ads" value="No">
+        <label for="attention_ads_no">No</label><br>
+
+        <h2>Section B: Factors that Influence Your Intention to Purchase and Making Purchase Decision</h2>
+
+        <table border="1">
+            <tr>
+                <th>No</th>
+                <th>Questions</th>
+                <th>Strongly Disagree</th>
+                <th>Disagree</th>
+                <th>Neutral</th>
+                <th>Agree</th>
+                <th>Strongly Agree</th>
+            </tr>
+            <!-- Purchase Behaviour (PB) -->
+            <tr>
+                <td>PB1</td>
+                <td>I am willing to buy a product promoted on social media.</td>
+                <td><input type="radio" name="PB1" value="1"></td>
+                <td><input type="radio" name="PB1" value="2"></td>
+                <td><input type="radio" name="PB1" value="3"></td>
+                <td><input type="radio" name="PB1" value="4"></td>
+                <td><input type="radio" name="PB1" value="5"></td>
+            </tr>
+            <tr>
+                <td>PB2</td>
+                <td>There is a high probability that I would purchase a product because of the impact of social media.
+                </td>
+                <td><input type="radio" name="PB2" value="1"></td>
+                <td><input type="radio" name="PB2" value="2"></td>
+                <td><input type="radio" name="PB2" value="3"></td>
+                <td><input type="radio" name="PB2" value="4"></td>
+                <td><input type="radio" name="PB2" value="5"></td>
+            </tr>
+            <tr>
+                <td>PB3</td>
+                <td>I am easily influenced by advertisements on social media and further make a purchase behaviour.
+                </td>
+                <td><input type="radio" name="PB3" value="1"></td>
+                <td><input type="radio" name="PB3" value="2"></td>
+                <td><input type="radio" name="PB3" value="3"></td>
+                <td><input type="radio" name="PB3" value="4"></td>
+                <td><input type="radio" name="PB3" value="5"></td>
+            </tr>
+            <tr>
+                <td>PB4</td>
+                <td>I had the experience of buying a product due to the influence of social media.</td>
+                <td><input type="radio" name="PB4" value="1"></td>
+                <td><input type="radio" name="PB4" value="2"></td>
+                <td><input type="radio" name="PB4" value="3"></td>
+                <td><input type="radio" name="PB4" value="4"></td>
+                <td><input type="radio" name="PB4" value="5"></td>
+            </tr>
+
+            <!-- Trust (T) -->
+            <tr>
+                <td>ATTD 1</td>
+                <td>Advertisement on social media can help me to be aware of the existence of products.</td>
+                <td><input type="radio" name="ATTD1" value="1"></td>
+                <td><input type="radio" name="ATTD1" value="2"></td>
+                <td><input type="radio" name="ATTD1" value="3"></td>
+                <td><input type="radio" name="ATTD1" value="4"></td>
+                <td><input type="radio" name="ATTD1" value="5"></td>
+            </tr>
+            <tr>
+                <td>ATTD 2</td>
+                <td>Advertisements on social media more easily attract my attention when compared to other advertising
+                    channels.</td>
+                <td><input type="radio" name="ATTD2" value="1"></td>
+                <td><input type="radio" name="ATTD2" value="2"></td>
+                <td><input type="radio" name="ATTD2" value="3"></td>
+                <td><input type="radio" name="ATTD2" value="4"></td>
+                <td><input type="radio" name="ATTD2" value="5"></td>
+            </tr>
+            <tr>
+                <td>ATTD 3</td>
+                <td>Prominent keywords such as promotion and discount on social media will attract my attention to seek
+                    more production information.</td>
+                <td><input type="radio" name="ATTD3" value="1"></td>
+                <td><input type="radio" name="ATTD3" value="2"></td>
+                <td><input type="radio" name="ATTD3" value="3"></td>
+                <td><input type="radio" name="ATTD3" value="4"></td>
+                <td><input type="radio" name="ATTD3" value="5"></td>
+            </tr>
+            <tr>
+                <td>ATTD 4</td>
+                <td>I ever purchase a product that I have become aware of through social media.</td>
+                <td><input type="radio" name="ATTD4" value="1"></td>
+                <td><input type="radio" name="ATTD4" value="2"></td>
+                <td><input type="radio" name="ATTD4" value="3"></td>
+                <td><input type="radio" name="ATTD4" value="4"></td>
+                <td><input type="radio" name="ATTD4" value="5"></td>
+            </tr>
+
+            <!-- Credibility (C) -->
+            <tr>
+                <td>SN1</td>
+                <td>My family influence my purchasing decision towards social media marketing.</td>
+                <td><input type="radio" name="SN1" value="1"></td>
+                <td><input type="radio" name="SN1" value="2"></td>
+                <td><input type="radio" name="SN1" value="3"></td>
+                <td><input type="radio" name="SN1" value="4"></td>
+                <td><input type="radio" name="SN1" value="5"></td>
+            </tr>
+            <tr>
+                <td>SN2</td>
+                <td>People around me think that I should purchase products through social media.</td>
+                <td><input type="radio" name="SN2" value="1"></td>
+                <td><input type="radio" name="SN2" value="2"></td>
+                <td><input type="radio" name="SN2" value="3"></td>
+                <td><input type="radio" name="SN2" value="4"></td>
+                <td><input type="radio" name="SN2" value="5"></td>
+            </tr>
+            <tr>
+                <td>SN3</td>
+                <td>I feel good if many people purchased products through social media.</td>
+                <td><input type="radio" name="SN3" value="1"></td>
+                <td><input type="radio" name="SN3" value="2"></td>
+                <td><input type="radio" name="SN3" value="3"></td>
+                <td><input type="radio" name="SN3" value="4"></td>
+                <td><input type="radio" name="SN3" value="5"></td>
+            </tr>
+            <tr>
+                <td>SN4</td>
+                <td>My friends encourage me to purchase products through social media.</td>
+                <td><input type="radio" name="SN4" value="1"></td>
+                <td><input type="radio" name="SN4" value="2"></td>
+                <td><input type="radio" name="SN4" value="3"></td>
+                <td><input type="radio" name="SN4" value="4"></td>
+                <td><input type="radio" name="SN4" value="5"></td>
+            </tr>
+
+            <!-- Purchase Intention (PI) -->
+            <tr>
+                <td>PBC1</td>
+                <td>Frequency product advertisement on social media led me to buy.</td>
+                <td><input type="radio" name="PBC1" value="1"></td>
+                <td><input type="radio" name="PBC1" value="2"></td>
+                <td><input type="radio" name="PBC1" value="3"></td>
+                <td><input type="radio" name="PBC1" value="4"></td>
+                <td><input type="radio" name="PBC1" value="5"></td>
+            </tr>
+            <tr>
+                <td>PBC2</td>
+                <td>I will choose social media as a reference channel for purchasing in the future.</td>
+                <td><input type="radio" name="PBC2" value="1"></td>
+                <td><input type="radio" name="PBC2" value="2"></td>
+                <td><input type="radio" name="PBC2" value="3"></td>
+                <td><input type="radio" name="PBC2" value="4"></td>
+                <td><input type="radio" name="PBC2" value="5"></td>
+            </tr>
+            <tr>
+                <td>PBC3</td>
+                <td>I will recommend my friend choose social media as a reference channel for making purchase intention
+                    in the future.</td>
+                <td><input type="radio" name="PBC3" value="1"></td>
+                <td><input type="radio" name="PBC3" value="2"></td>
+                <td><input type="radio" name="PBC3" value="3"></td>
+                <td><input type="radio" name="PBC3" value="4"></td>
+                <td><input type="radio" name="PBC3" value="5"></td>
+            </tr>
+            <tr>
+                <td>PBC4</td>
+                <td>I will recommend family choose social media as a reference channel for making purchase intention in
+                    the future.</td>
+                <td><input type="radio" name="PBC4" value="1"></td>
+                <td><input type="radio" name="PBC4" value="2"></td>
+                <td><input type="radio" name="PBC4" value="3"></td>
+                <td><input type="radio" name="PBC4" value="4"></td>
+                <td><input type="radio" name="PBC4" value="5"></td>
+            </tr>
+
+        </table>
+
+        <!-- <input type="submit" value="Submit">
+        </form> -->
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock content %}

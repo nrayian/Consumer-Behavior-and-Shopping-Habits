@@ -1,0 +1,9 @@
+username: baker
+password: codecrushers1
+email: mdbakerfarhad@gmail.comm
+
+run command - python manage.py runserver
+
+run migrations from the terminal -
+. python manage.py makemigrations
+. python manage.py migrate
